@@ -9,7 +9,7 @@ from concurrent.futures import ThreadPoolExecutor
 app = Flask(__name__)
 
 # app.config['MONGO_DBNAME'] = 'zhejiang'
-# app.config['MONGO_URI'] = 'mongodb://127.0.0.1:27017/rest'  #如果部署在本上，其中ip地址可填127.0.0.1
+# app.config['MONGO_URI'] = 'mongodb://127.0.0.1:27017/rest'  # 如果部署在本上，其中ip地址可填127.0.0.1
 # mongo = PyMongo(app)
 
 MONGO_HOST = '106.14.176.62'
@@ -18,12 +18,12 @@ MONGO_PORT = 27017
 # 同时处理的最大线程数
 executor = ThreadPoolExecutor(10)
 
+
 def link():
     client = MongoClient(host=MONGO_HOST, port=MONGO_PORT)
     mo_db = client['zhejiang']
     coll = mo_db['sheng']
     return coll
-
 
 
 @app.route('/search', methods=['POST'])
@@ -33,9 +33,9 @@ def add_user():
     executor.submit(func(), name)
     return jsonify({'result': output})
 
+
 def func(name):
     print(name)
-
 
     # pwd = request.json['pwd']
     # star_id = star.insert({'name': name})
@@ -81,7 +81,6 @@ def func(name):
 #         abort(404)
 #     mongo.db.userInfo.remove({'name': name})
 #     return jsonify({'result': True})
-
 
 
 if __name__ == '__main__':

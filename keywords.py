@@ -63,9 +63,6 @@ def summary():
     # executor.submit(keywords, id)
     return jsonify(output)
 
-# def func(id):
-#     pass
-
 
 @app.route('/surface', methods=['POST'])
 def surface():
